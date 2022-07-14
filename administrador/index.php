@@ -1,6 +1,16 @@
 <?php
-if ($_POST){
-    header('Location:inicio.php');
+
+session_start();
+
+if ($_POST) {
+
+    if ($_POST['usuario'] == "develoteca" && $_POST['contraseña'] == "sistema") {  // LINEA A CAMBIAR PARA CONSULTAR MYSQL 
+        $_SESSION['usuario'] = "ok";
+        $_SESSION['nombreUsuario'] = "develoteca";
+        header('Location:inicio.php');
+    } else {
+        $mensaje = "Error: El usuario o contraseña son incorrectos";
+    }
 }
 
 ?>
@@ -31,15 +41,23 @@ if ($_POST){
                         Login
                     </div>
                     <div class="card-body">
-                        <form action="index.php" method="post">
+
+                        <?php if (isset($mensaje)) { ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo $mensaje; ?>
+                            </div>
+                        <?php } ?>
+
+
+                        <form method="post">
                             <div class="form-group">
                                 <label>Usuario:</label>
-                                <input type="txt" class="form-control" name="usuario" aria-describedby="emailHelp" placeholder="Ingrese su usuario" required>
+                                <input type="txt" class="form-control" name="usuario" aria-describedby="emailHelp" placeholder="Ingrese su usuario" >
                             </div>
-
+                            <br>
                             <div class="form-group">
                                 <label>Contraseña:</label>
-                                <input type="password" class="form-control" placeholder="Ingresa tu contraseña" required>
+                                <input type="password" class="form-control" name="contraseña" placeholder="Ingresa tu contraseña" >
                             </div>
 
                             <br>

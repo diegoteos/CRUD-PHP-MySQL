@@ -1,3 +1,18 @@
+<?php
+
+session_start();
+if (!isset($_SESSION['usuario'])) {
+    header('Location:../index.php');
+} else {
+    if ($_SESSION['usuario'] == 'ok') {
+        $nombreUsuario = $_SESSION['nombreUsuario'];
+    }
+}
+
+
+?>
+
+
 <!doctype html>
 <html lang="es">
 
@@ -10,17 +25,17 @@
 
 <body>
 
-<?php $url="http://" . $_SERVER['HTTP_HOST'] . "/crud" ?> 
+    <?php $url = "http://" . $_SERVER['HTTP_HOST'] . "/crud" ?>
 
-<nav class="navbar navbar-expand navbar-light bg-light">
-    <div class="nav navbar-nav">
-        <a class="nav-item nav-link active" href="#">Administrador del sitio<span class="visually-hidden">(current)</span></a>
-        <a class="nav-item nav-link" href="<?php echo $url; ?>/administrador/inicio.php">Inicio</a>
-        <a class="nav-item nav-link" href="<?php echo $url; ?>/administrador/seccion/productos.php">Libros</a>
-        <a class="nav-item nav-link" href="<?php echo $url; ?>/administrador/seccion/cerrar.php">Cerrar</a>
-        <a class="nav-item nav-link" href="<?php echo $url; ?>">Ver sitio web</a>
-    </div>
-</nav>
+    <nav class="navbar navbar-expand navbar-light bg-light">
+        <div class="nav navbar-nav">
+            <a class="nav-item nav-link active" href="#">Administrador del sitio<span class="visually-hidden">(current)</span></a>
+            <a class="nav-item nav-link" href="<?php echo $url; ?>/administrador/inicio.php">Inicio</a>
+            <a class="nav-item nav-link" href="<?php echo $url; ?>/administrador/seccion/productos.php">Libros</a>
+            <a class="nav-item nav-link" href="<?php echo $url; ?>/administrador/seccion/cerrar.php">Cerrar</a>
+            <a class="nav-item nav-link" href="<?php echo $url; ?>">Ver sitio web</a>
+        </div>
+    </nav>
 
     <div class="container">
         <br>

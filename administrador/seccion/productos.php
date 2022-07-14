@@ -30,6 +30,8 @@ switch ($accion) {
         $sentenciaSQL->execute();
         //$sql = ("INSERT INTO `libros` (`nombre`, `imagen`) VALUES ('$txtNombre', '$txtImagen');");
         //$conexion->query($sql);
+        header('Location:productos.php');
+
         break;
 
     case "modificar":
@@ -64,11 +66,12 @@ switch ($accion) {
             $sentenciaSQL->execute();
         }
 
+        header('Location:productos.php');
 
         break;
 
     case "cancelar":
-        echo "Presionado boton cancelar";
+        header('Location:productos.php');
         break;
 
     case "Seleccionar":
@@ -105,6 +108,8 @@ switch ($accion) {
         $sentenciaSQL->bindParam(':id', $txtID);
         $sentenciaSQL->execute();
         //echo "Presionado boton borrar";
+        header('Location:productos.php');
+
         break;
 }
 
@@ -126,15 +131,16 @@ $listaLibros = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 
             <form method="POST" enctype="multipart/form-data">
+
                 <div class="form-group">
                     <label for="txtID">ID</label>
-                    <input type="txt" class="form-control" value="<?php echo $txtID; ?>" name="txtID" id="txtID" placeholder="ID">
+                    <input type="txt" required readonly class="form-control" value="<?php echo $txtID; ?>" name="txtID" id="txtID" placeholder="ID">
                 </div>
 
                 <br>
                 <div class="form-group">
                     <label for="txtNombre">Nombre:</label>
-                    <input type="txt" class="form-control" value="<?php echo $txtNombre; ?>" name="txtNombre" id="txtNombre" placeholder="Nombre del libro">
+                    <input type="txt" required class="form-control" value="<?php echo $txtNombre; ?>" name="txtNombre" id="txtNombre" placeholder="Nombre del libro">
                 </div>
                 <br>
                 <div class="form-group">
@@ -156,9 +162,9 @@ $listaLibros = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
                 <br>
                 <div class="btn-group" role="group" aria-label="">
-                    <button type="submit" name="accion" value="agregar" class="btn btn-success">Agregar</button>
-                    <button type="submit" name="accion" value="modificar" class="btn btn-warning">Modificar</button>
-                    <button type="submit" name="accion" value="cancelar" class="btn btn-info">Cancelar</button>
+                    <button type="submit" name="accion" <?php echo ($accion == "Seleccionar") ? "disabled" : ""; ?> value="agregar" class="btn btn-success">Agregar</button>
+                    <button type="submit" name="accion" <?php echo ($accion != "Seleccionar") ? "disabled" : ""; ?> value="modificar" class="btn btn-warning">Modificar</button>
+                    <button type="submit" name="accion" <?php echo ($accion != "Seleccionar") ? "disabled" : ""; ?> value="cancelar" class="btn btn-info">Cancelar</button>
                 </div>
 
             </form>
