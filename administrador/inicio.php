@@ -6,7 +6,7 @@
             <h1 class="display-3">Bienvenido <?php echo $nombreUsuario; ?></h1>
             <p class="lead">Centro de administracion del sistema</p>
             <hr class="my-2">
-            <p>More info</p>
+            <p>Mas informacion del sitio...</p>
             <p class="lead">
                 <a class="btn btn-primary btn-lg" href="seccion/productos.php" role="button">Administrar</a>
             </p>
